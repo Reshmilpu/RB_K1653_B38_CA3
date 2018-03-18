@@ -558,4 +558,40 @@ int main()
   } 
   printf("\nAverage Waiting Time= %f\n",wait_time*1.0/a); 
   printf("Avg Turnaround Time = %f",turnaround_time*1.0/a); 
+ //---------------------PRIORITY-----------------------------------------------------
+	printf("\nmedium priority queue:");
+	printf("\nProcess ID\tPriority\tBurst Time\n");
+	for(int i=0;i<a1;i++)
+	{
+		printf("%d\t\t%d\t\t%d\n",q1[i],p1[i],b1[i]);
+	}
+	
+	
+	
+		
+	    //sorting burst time, priority and process number in ascending order using selection sort
+	int wt[20],tat[20],i,j,total=0,pos,temp,avg_wt,avg_tat;
+    for(i=0;i<a1;i++)
+    {
+        pos=i;
+        for(j=i+1;j<a1;j++)
+        {
+            if(p1[j]<p1[pos])
+                pos=j;
+        }
+ 
+        temp=p1[i];
+        p1[i]=p1[pos];
+        p1[pos]=temp;
+ 
+        temp=b1[i];
+        b1[i]=b1[pos];
+        b1[pos]=temp;
+ 
+        temp=q1[i];
+        q1[i]=q1[pos];
+        q1[pos]=temp;
+    }
+ 
+    wt[0]=0;    //waiting time for first process is zero
  
