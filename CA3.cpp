@@ -595,3 +595,66 @@ int main()
  
     wt[0]=0;    //waiting time for first process is zero
  
+    //calculate waiting time
+    for(i=1;i<a1;i++)
+    {
+        wt[i]=0;
+        for(j=0;j<i;j++)
+            wt[i]+=b1[j];
+ 
+        total+=wt[i];
+    }
+ 
+    avg_wt=total/a1;      //average waiting time
+    total=0;
+ 
+    printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
+    for(i=0;i<a1;i++)
+    {
+        tat[i]=b1[i]+wt[i];     //calculate turnaround time
+        total+=tat[i];
+        printf("\nP[%d]\t\t  %d\t\t    %d\t\t\t%d",q1[i],b1[i],wt[i],tat[i]);
+    }
+ 
+    avg_tat=total/a1;     //average turnaround time
+    printf("\n\nAverage Waiting Time=%d",avg_wt);
+    printf("\nAverage Turnaround Time=%d\n",avg_tat);
+    //--------------------------------------FCFS--------------------------------------------------
+    printf("\nlowest priority queue:");
+	printf("\nProcess ID\tPriority\tBurst Time\n");
+	for(int i=0;i<a2;i++)
+	{
+		printf("%d\t\t%d\t\t%d\n",q2[i],p2[i],b2[i]);
+	}
+	int wt1[20],tat1[20],avwt=0,avtat=0;
+        wt1[0]=0;    //waiting time for first process is 0
+ 
+    //calculating waiting time
+    for(i=1;i<a2;i++)
+    {
+        wt1[i]=0;
+        for(j=0;j<i;j++)
+            wt1[i]+=b2[j];
+    }
+ 
+    printf("\nProcess\t\tBurst Time\tWaiting Time\tTurnaround Time");
+ 
+    //calculating turnaround time
+    for(i=0;i<a2;i++)
+    {
+        tat1[i]=b2[i]+wt1[i];
+        avwt+=wt1[i];
+        avtat+=tat1[i];
+        printf("\nP[%d]\t\t%d\t\t%d\t\t%d",i+1,b2[i],wt1[i],tat1[i]);
+    }
+ 
+    avwt/=i;
+    avtat/=i;
+    printf("\n\nAverage Waiting Time:%d",avwt);
+    printf("\nAverage Turnaround Time:%d",avtat);
+ return 0;
+}
+
+
+
+
